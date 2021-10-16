@@ -1,7 +1,13 @@
 
 body {
-    background-color: whitesmoke;
+    background-color: rgb(35, 35, 35);
+    color: white;
 }
+
+#container {
+    margin-left: 50px;
+}
+
 #result {
     font-style: italic;
 }

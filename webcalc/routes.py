@@ -1,14 +1,9 @@
-from logging import DEBUG
-from flask import Flask, render_template, request
-from waitress import serve
-from static.modules.operation import performCalc
-from typing import Final
-
+from webcalc import app
+from flask import request, render_template
+from webcalc.modules.operation import performCalc
 import json
 
 JSON_RESPONSE = str
-
-app = Flask(__name__)
 
 #-----------------------------------------
 # Web API for Get Operations
@@ -66,21 +61,3 @@ def index():
 
     # Display default page
     return render_template('index.html')
-
-
-PORT_NUMBER:Final = 5555
-PROD:Final  = 'PROD' 
-TEST:Final  = 'TEST'
-
-MODE:Final  = TEST
- 
-if __name__ == "__main__":
-  print('******************************************')
-  print('=========================================*')
-  print()
-  print(f'Running in {MODE} on port:{PORT_NUMBER}\n') 
-
-  if MODE == PROD:    
-    serve(app, host='0.0.0.0', port=PORT_NUMBER)
-  else:
-    app.run(debug=True, port=PORT_NUMBER)

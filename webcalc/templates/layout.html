@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{% block title%} {% endblock %}</title>
+
+    <link rel="stylesheet" href="../static/css/site.css">
+    <link rel="shortcut icon" href="../static/images/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+
+    <div id="container">
+
+        <header>
+            <h1>JavaScript Callbacks</h1>
+    
+            <h3>Calculation Asynchronized.</h3>
+        </header>
+    
+        <main>
+    
+            {% block content%}
+            {% endblock%}
+            
+        </main>
+
+    </div>
+
+    <footer>
+
+        <hr>
+        <h6>Web Calculator powered by Flask Framework</h6>
+        <script src="../static/js/index-constant.js"></script>
+        <script src='../static/js/index.js'></script>
+
+    </footer>
+
+</body>
+
+</html>

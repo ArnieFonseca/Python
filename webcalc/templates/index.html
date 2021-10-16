@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Web Calculator
+{% endblock%}
+
+{% block content%}
+<p id="result">Press button to calculate the addition</p>
+
+<table>
+    <tr>
+        <td class="literals"><label> First:</label></td>
+        <td><input id="first" type="text" maxlength="5" placeholder="Enter a first" /></td>
+    </tr>
+    <tr>
+        <td class="literals"><label>Second:</label></td>
+        <td><input id="second" type="text" maxlength="5" placeholder="Enter a second" /></td>
+    </tr>
+</table>
+
+<!-- Dropdown option for the calculation -->
+<select id="cboOperation">
+</select>
+
+<!-- Button and image for the asynchronized call -->
+<button id="btn">Calculate</button>
+<img id="imgLoader" src="../static/images/circles-menu-1.gif">
+
+{% endblock%}
