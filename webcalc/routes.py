@@ -1,51 +1,39 @@
 from webcalc import app
-from flask import request, render_template
-from webcalc.modules.operation import performCalc
+from flask import render_template
+
+import webcalc.services  as services
 import json
 
 JSON_RESPONSE = str
 
-#-----------------------------------------
-# Web API for Get Operations
-# Method: Http Post
-# Data: {first:#, second:#, operation:str}
 #-----------------------------------=-----
 @app.route('/calculate', methods=['POST'])
 def doCalculation()->JSON_RESPONSE:
     """ 
+      Web API for perform calculation
+      Method: Http Post
+      Data: {first: int, second: int, operation: str}
+
       Perform the operation using a Web API Call 
     """ 
 
-    # Get JSON data from client
-    first:int = int(request.json['first'])
-    second:int = int(request.json['second'])
-    oper:str = request.json['operation']
-
-    rst:int  =  performCalc(first, second, oper)
-
-    # Prepare the return structure
-    result:dict[str,int] = {"result":rst}
+    # Call service for calculation
+    result:dict[str,int] = services.doCalculation()
 
     # Send JSON back to the client
     return json.dumps(result)
 
-#----------------------------------------
-# Web API for Get Operations
-# Method: Http Get
+
 #----------------------------------------
 @app.route('/operations', methods=['GET'])
 def getOperations()->JSON_RESPONSE:
+    """
+     Web API for Get Operations
+     Method: Http Get
+    """
 
-    # Load Key/Value pairs for the operations   
-    operations:list[dict[str,str]] = [{"add" : "Addition"},  
-                  {"sub" : "Subtraction"}, 
-                  {"mul" : "Multiplication"},  
-                  {"div" : "Division"},  
-                  {"mod" : "Remaider"},
-                  {"gcd" : "GCD"}] 
-    
-    # Prepare the return structure
-    result:dict[str, list[dict[str,str]]] = {"result":operations}
+    # Call service to get all operation
+    result:dict[str, list[dict[str,str]]] = services.getOperations() 
 
     # Send JSON back to the client
     return  json.dumps(result)
